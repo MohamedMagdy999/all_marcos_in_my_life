@@ -78,3 +78,21 @@
 #define bitSet(value, bit) ((value) |= (1UL << (bit)))
 #define bitClear(value, bit) ((value) &= ~(1UL << (bit)))
 #define bitWrite(value, bit, bitvalue) (bitvalue ? bitSet(value, bit) : bitClear(value, bit))
+
+
+// Macro to Convert one Endian into another Endian
+#define SwapEndians(value) ((value & 0x000000FF) << 24) | ((value &
+0x0000FF00) << 8) | \
+((value & 0x00FF0000) >> 8) | ((value & 0xFF000000) >> 24)
+  
+  
+// Macro to Swap Eight Bytes of Data
+#define SwapEightBytes(data)
+((((data) >> 56) & 0x00000000000000FF) | (((data) >> 40) & 0x000000000000FF00) |
+(((data) >> 24) & 0x0000000000FF0000) | (((data) >> 8) & 0x00000000FF000000) |
+(((data) << 8) & 0x000000FF00000000) | (((data) << 24) & 0x0000FF0000000000) |
+(((data) << 40) & 0x00FF000000000000) | (((data) << 56) & 0xFF00000000000000))
+  
+// Macros to Get HIGH and LOW Bytes from a word
+#define LOW_BYTE(x) ((unsigned char)(x)&0xFF)
+#define HIGH_BYTE(x) ((unsigned char)(x>>8)&0xFF)
